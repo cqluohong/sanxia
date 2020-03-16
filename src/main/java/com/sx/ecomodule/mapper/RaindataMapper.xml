@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.ecomodule.dao.RaindataMapper">
+  <resultMap id="BaseResultMap" type="com.sx.ecomodule.entity.Raindata">
+    <result column="QXAA05A010" jdbcType="VARCHAR" property="qxaa05a010" />
+    <result column="QXAA05A020" jdbcType="VARCHAR" property="qxaa05a020" />
+    <result column="QXAA05A030" jdbcType="VARCHAR" property="qxaa05a030" />
+    <result column="QXAA05A040" jdbcType="VARCHAR" property="qxaa05a040" />
+    <result column="QXAA05A050" jdbcType="DECIMAL" property="qxaa05a050" />
+    <result column="QXAA05A060" jdbcType="DECIMAL" property="qxaa05a060" />
+    <result column="QXAA05A070" jdbcType="DECIMAL" property="qxaa05a070" />
+    <result column="QXAA05A080" jdbcType="DECIMAL" property="qxaa05a080" />
+    <result column="QXAA05A090" jdbcType="VARCHAR" property="qxaa05a090" />
+    <result column="QXAA05A100" jdbcType="VARCHAR" property="qxaa05a100" />
+  </resultMap>
+  <resultMap id="rainModel" type="com.sx.ecomodule.model.RainModel">
+    <result column="ZHBB01A020" jdbcType="VARCHAR" property="name" />
+    <result column="ZHBB01A110" jdbcType="DOUBLE" property="x" />
+    <result column="ZHBB01A120" jdbcType="DOUBLE" property="y" />
+    <result column="RAIN" jdbcType="DOUBLE" property="rainValue" />
+    <result column="ZHBB01A010" jdbcType="VARCHAR" property="id" />
+  </resultMap>
+  <select id="getzhandianRainBytime" resultMap="rainModel">
+    select ZHBB01A010,ZHBB01A020,ZHBB01A110,ZHBB01A120,RAIN from RAINDATA
+    where to_date(TIME,'yyyymmdd') = to_date(#{time},'yyyy/mm/dd')
+  </select>
+
+  <select id="getInversedistanceSum" resultType="Double">
+    select sum(1/(power(#{x}-qxaa05a060,2)+power(#{y}-qxaa05a070,2)))
+    from RAINDATA
+    where to_date(QXAA05A020,'yyyymmdd') = to_date(#{time},'yyyy/mm/dd')
+  </select>
+  <select id="getIdwValue" resultType="double">
+    select sum(((1/(power(#{x}-qxaa05a060,2)+power(#{y}-qxaa05a070,2)))/#{inversedistanceSum})*QXAA05A050)
+    from RAINDATA
+    where to_date(QXAA05A020,'yyyymmdd') = to_date(#{time},'yyyy/mm/dd')
+  </select>
+  <insert id="insert" parameterType="com.sx.ecomodule.entity.Raindata">
+    insert into RAINDATA (QXAA05A010, QXAA05A020, QXAA05A030, 
+      QXAA05A040, QXAA05A050, QXAA05A060, 
+      QXAA05A070, QXAA05A080, QXAA05A090, 
+      QXAA05A100)
+    values (#{qxaa05a010,jdbcType=VARCHAR}, #{qxaa05a020,jdbcType=VARCHAR}, #{qxaa05a030,jdbcType=VARCHAR}, 
+      #{qxaa05a040,jdbcType=VARCHAR}, #{qxaa05a050,jdbcType=DECIMAL}, #{qxaa05a060,jdbcType=DECIMAL}, 
+      #{qxaa05a070,jdbcType=DECIMAL}, #{qxaa05a080,jdbcType=DECIMAL}, #{qxaa05a090,jdbcType=VARCHAR}, 
+      #{qxaa05a100,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sx.ecomodule.entity.Raindata">
+    insert into RAINDATA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="qxaa05a010 != null">
+        QXAA05A010,
+      </if>
+      <if test="qxaa05a020 != null">
+        QXAA05A020,
+      </if>
+      <if test="qxaa05a030 != null">
+        QXAA05A030,
+      </if>
+      <if test="qxaa05a040 != null">
+        QXAA05A040,
+      </if>
+      <if test="qxaa05a050 != null">
+        QXAA05A050,
+      </if>
+      <if test="qxaa05a060 != null">
+        QXAA05A060,
+      </if>
+      <if test="qxaa05a070 != null">
+        QXAA05A070,
+      </if>
+      <if test="qxaa05a080 != null">
+        QXAA05A080,
+      </if>
+      <if test="qxaa05a090 != null">
+        QXAA05A090,
+      </if>
+      <if test="qxaa05a100 != null">
+        QXAA05A100,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="qxaa05a010 != null">
+        #{qxaa05a010,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa05a020 != null">
+        #{qxaa05a020,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa05a030 != null">
+        #{qxaa05a030,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa05a040 != null">
+        #{qxaa05a040,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa05a050 != null">
+        #{qxaa05a050,jdbcType=DECIMAL},
+      </if>
+      <if test="qxaa05a060 != null">
+        #{qxaa05a060,jdbcType=DECIMAL},
+      </if>
+      <if test="qxaa05a070 != null">
+        #{qxaa05a070,jdbcType=DECIMAL},
+      </if>
+      <if test="qxaa05a080 != null">
+        #{qxaa05a080,jdbcType=DECIMAL},
+      </if>
+      <if test="qxaa05a090 != null">
+        #{qxaa05a090,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa05a100 != null">
+        #{qxaa05a100,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.ecomodule.dao.Fbaj01aMapper">
+  <resultMap id="BaseResultMap" type="com.sx.ecomodule.entity.Fbaj01a">
+    <result column="FBAJ01A010" jdbcType="VARCHAR" property="fbaj01a010" />
+    <result column="FBAJ01A020" jdbcType="VARCHAR" property="fbaj01a020" />
+    <result column="FBAJ01A030" jdbcType="VARCHAR" property="fbaj01a030" />
+    <result column="FBAJ01A040" jdbcType="VARCHAR" property="fbaj01a040" />
+    <result column="FBAJ01A050" jdbcType="VARCHAR" property="fbaj01a050" />
+    <result column="FBAJ01A060" jdbcType="DECIMAL" property="fbaj01a060" />
+    <result column="FBAJ01A070" jdbcType="DECIMAL" property="fbaj01a070" />
+    <result column="FBAJ01A080" jdbcType="VARCHAR" property="fbaj01a080" />
+    <result column="FBAJ01A090" jdbcType="VARCHAR" property="fbaj01a090" />
+    <result column="FBAJ01A100" jdbcType="VARCHAR" property="fbaj01a100" />
+    <result column="FBAJ01A110" jdbcType="DECIMAL" property="fbaj01a110" />
+    <result column="FBAJ01A120" jdbcType="DECIMAL" property="fbaj01a120" />
+    <result column="FBAJ01A130" jdbcType="DECIMAL" property="fbaj01a130" />
+    <result column="FBAJ01A140" jdbcType="DECIMAL" property="fbaj01a140" />
+    <result column="FBAJ01A150" jdbcType="DECIMAL" property="fbaj01a150" />
+    <result column="FBAJ01A160" jdbcType="DECIMAL" property="fbaj01a160" />
+    <result column="FBAJ01A170" jdbcType="DECIMAL" property="fbaj01a170" />
+    <result column="FBAJ01A180" jdbcType="DECIMAL" property="fbaj01a180" />
+    <result column="FBAJ01A190" jdbcType="DECIMAL" property="fbaj01a190" />
+    <result column="FBAJ01A200" jdbcType="DECIMAL" property="fbaj01a200" />
+    <result column="FBAJ01A210" jdbcType="DECIMAL" property="fbaj01a210" />
+    <result column="FBAJ01A220" jdbcType="DECIMAL" property="fbaj01a220" />
+    <result column="FBAJ01A230" jdbcType="DECIMAL" property="fbaj01a230" />
+    <result column="FBAJ01A240" jdbcType="DECIMAL" property="fbaj01a240" />
+    <result column="FBAJ01A250" jdbcType="VARCHAR" property="fbaj01a250" />
+    <result column="FBAJ01A260" jdbcType="VARCHAR" property="fbaj01a260" />
+  </resultMap>
+  <select id="queryHavingPanju" resultMap="BaseResultMap">
+    select * from FBAJ01A where FBAJ01A010 = #{id}
+  </select>
+  <insert id="insert" parameterType="com.sx.ecomodule.entity.Fbaj01a">
+    insert into FBAJ01A (FBAJ01A010, FBAJ01A020, FBAJ01A030, 
+      FBAJ01A040, FBAJ01A050, FBAJ01A060, 
+      FBAJ01A070, FBAJ01A080, FBAJ01A090, 
+      FBAJ01A100, FBAJ01A110, FBAJ01A120, 
+      FBAJ01A130, FBAJ01A140, FBAJ01A150, 
+      FBAJ01A160, FBAJ01A170, FBAJ01A180, 
+      FBAJ01A190, FBAJ01A200, FBAJ01A210, 
+      FBAJ01A220, FBAJ01A230, FBAJ01A240, 
+      FBAJ01A250, FBAJ01A260)
+    values (#{fbaj01a010,jdbcType=VARCHAR}, #{fbaj01a020,jdbcType=VARCHAR}, #{fbaj01a030,jdbcType=VARCHAR}, 
+      #{fbaj01a040,jdbcType=VARCHAR}, #{fbaj01a050,jdbcType=VARCHAR}, #{fbaj01a060,jdbcType=DECIMAL}, 
+      #{fbaj01a070,jdbcType=DECIMAL}, #{fbaj01a080,jdbcType=VARCHAR}, #{fbaj01a090,jdbcType=VARCHAR}, 
+      #{fbaj01a100,jdbcType=VARCHAR}, #{fbaj01a110,jdbcType=DECIMAL}, #{fbaj01a120,jdbcType=DECIMAL}, 
+      #{fbaj01a130,jdbcType=DECIMAL}, #{fbaj01a140,jdbcType=DECIMAL}, #{fbaj01a150,jdbcType=DECIMAL}, 
+      #{fbaj01a160,jdbcType=DECIMAL}, #{fbaj01a170,jdbcType=DECIMAL}, #{fbaj01a180,jdbcType=DECIMAL}, 
+      #{fbaj01a190,jdbcType=DECIMAL}, #{fbaj01a200,jdbcType=DECIMAL}, #{fbaj01a210,jdbcType=DECIMAL}, 
+      #{fbaj01a220,jdbcType=DECIMAL}, #{fbaj01a230,jdbcType=DECIMAL}, #{fbaj01a240,jdbcType=DECIMAL}, 
+      #{fbaj01a250,jdbcType=VARCHAR}, #{fbaj01a260,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sx.ecomodule.entity.Fbaj01a">
+    insert into FBAJ01A
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fbaj01a010 != null">
+        FBAJ01A010,
+      </if>
+      <if test="fbaj01a020 != null">
+        FBAJ01A020,
+      </if>
+      <if test="fbaj01a030 != null">
+        FBAJ01A030,
+      </if>
+      <if test="fbaj01a040 != null">
+        FBAJ01A040,
+      </if>
+      <if test="fbaj01a050 != null">
+        FBAJ01A050,
+      </if>
+      <if test="fbaj01a060 != null">
+        FBAJ01A060,
+      </if>
+      <if test="fbaj01a070 != null">
+        FBAJ01A070,
+      </if>
+      <if test="fbaj01a080 != null">
+        FBAJ01A080,
+      </if>
+      <if test="fbaj01a090 != null">
+        FBAJ01A090,
+      </if>
+      <if test="fbaj01a100 != null">
+        FBAJ01A100,
+      </if>
+      <if test="fbaj01a110 != null">
+        FBAJ01A110,
+      </if>
+      <if test="fbaj01a120 != null">
+        FBAJ01A120,
+      </if>
+      <if test="fbaj01a130 != null">
+        FBAJ01A130,
+      </if>
+      <if test="fbaj01a140 != null">
+        FBAJ01A140,
+      </if>
+      <if test="fbaj01a150 != null">
+        FBAJ01A150,
+      </if>
+      <if test="fbaj01a160 != null">
+        FBAJ01A160,
+      </if>
+      <if test="fbaj01a170 != null">
+        FBAJ01A170,
+      </if>
+      <if test="fbaj01a180 != null">
+        FBAJ01A180,
+      </if>
+      <if test="fbaj01a190 != null">
+        FBAJ01A190,
+      </if>
+      <if test="fbaj01a200 != null">
+        FBAJ01A200,
+      </if>
+      <if test="fbaj01a210 != null">
+        FBAJ01A210,
+      </if>
+      <if test="fbaj01a220 != null">
+        FBAJ01A220,
+      </if>
+      <if test="fbaj01a230 != null">
+        FBAJ01A230,
+      </if>
+      <if test="fbaj01a240 != null">
+        FBAJ01A240,
+      </if>
+      <if test="fbaj01a250 != null">
+        FBAJ01A250,
+      </if>
+      <if test="fbaj01a260 != null">
+        FBAJ01A260,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fbaj01a010 != null">
+        #{fbaj01a010,jdbcType=VARCHAR},
+      </if>
+      <if test="fbaj01a020 != null">
+        #{fbaj01a020,jdbcType=VARCHAR},
+      </if>
+      <if test="fbaj01a030 != null">
+        #{fbaj01a030,jdbcType=VARCHAR},
+      </if>
+      <if test="fbaj01a040 != null">
+        #{fbaj01a040,jdbcType=VARCHAR},
+      </if>
+      <if test="fbaj01a050 != null">
+        #{fbaj01a050,jdbcType=VARCHAR},
+      </if>
+      <if test="fbaj01a060 != null">
+        #{fbaj01a060,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a070 != null">
+        #{fbaj01a070,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a080 != null">
+        #{fbaj01a080,jdbcType=VARCHAR},
+      </if>
+      <if test="fbaj01a090 != null">
+        #{fbaj01a090,jdbcType=VARCHAR},
+      </if>
+      <if test="fbaj01a100 != null">
+        #{fbaj01a100,jdbcType=VARCHAR},
+      </if>
+      <if test="fbaj01a110 != null">
+        #{fbaj01a110,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a120 != null">
+        #{fbaj01a120,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a130 != null">
+        #{fbaj01a130,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a140 != null">
+        #{fbaj01a140,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a150 != null">
+        #{fbaj01a150,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a160 != null">
+        #{fbaj01a160,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a170 != null">
+        #{fbaj01a170,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a180 != null">
+        #{fbaj01a180,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a190 != null">
+        #{fbaj01a190,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a200 != null">
+        #{fbaj01a200,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a210 != null">
+        #{fbaj01a210,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a220 != null">
+        #{fbaj01a220,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a230 != null">
+        #{fbaj01a230,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a240 != null">
+        #{fbaj01a240,jdbcType=DECIMAL},
+      </if>
+      <if test="fbaj01a250 != null">
+        #{fbaj01a250,jdbcType=VARCHAR},
+      </if>
+      <if test="fbaj01a260 != null">
+        #{fbaj01a260,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

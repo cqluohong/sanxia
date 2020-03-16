@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.ecomodule.dao.ShuiweiMapper">
+  <resultMap id="BaseResultMap" type="com.sx.ecomodule.entity.Shuiwei">
+    <result column="XTSW01A010" jdbcType="VARCHAR" property="xtsw01a010" />
+    <result column="XTSW01A020" jdbcType="VARCHAR" property="xtsw01a020" />
+    <result column="XTSW01A030" jdbcType="DECIMAL" property="xtsw01a030" />
+    <result column="XTSW01A040" jdbcType="DECIMAL" property="xtsw01a040" />
+    <result column="XTSW01A050" jdbcType="DECIMAL" property="xtsw01a050" />
+    <result column="XTSW01A060" jdbcType="VARCHAR" property="xtsw01a060" />
+    <result column="XTSW01A070" jdbcType="DECIMAL" property="xtsw01a070" />
+    <result column="XTSW01A080" jdbcType="VARCHAR" property="xtsw01a080" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    XTSW01A010, XTSW01A020, XTSW01A030, XTSW01A040, XTSW01A050, XTSW01A060, XTSW01A070,
+    XTSW01A080
+  </sql>
+  <select id="selectBypage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from XTSW01A
+    where rownum &lt; #{end} minus
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM XTSW01A
+    WHERE ROWNUM &lt; #{start}
+  </select>
+
+  <select id="getSwChartSerarch" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from XTSW01A
+    where rownum &lt; #{end} and XTSW01A010 = #{zhandian} and (to_date(XTSW01A.xtsw01a020, 'yyyy/mm/dd')
+    between to_date(#{starttime},'yyyy/mm/dd') and  to_date(#{endtime}, 'yyyy/mm/dd')) minus
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM XTSW01A
+    WHERE ROWNUM &lt; #{start} and XTSW01A010 = #{zhandian} and (to_date(XTSW01A.xtsw01a020, 'yyyy/mm/dd')
+    between to_date(#{starttime},'yyyy/mm/dd') and  to_date(#{endtime}, 'yyyy/mm/dd'))
+  </select>
+  <select id="swChartCount" resultType="Integer">
+    select count(*) from XTSW01A
+    where xtsw01a010=#{zhandian} and
+    (to_date(XTSW01A.xtsw01a020, 'yyyy/mm/dd') between to_date(#{starttime}, 'yyyy/mm/dd')
+    and  to_date(#{endtime}, 'yyyy/mm/dd'))
+  </select>
+  <select id="getSwChartBynopage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from XTSW01A where xtsw01a010=#{zhandian} and
+    (to_date(XTSW01A.xtsw01a020, 'yyyy/mm/dd') between to_date(#{starttime}, 'yyyy/mm/dd')
+    and  to_date(#{endtime}, 'yyyy/mm/dd'))
+  </select>
+  <select id="selectCounts" resultType="Integer">
+    SELECT COUNT(*) FROM XTSW01A
+  </select>
+  <select id="querySwBytime" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from XTSW01A where to_date(XTSW01A.xtsw01a020, 'yyyy/mm/dd') = to_date(#{time}, 'yyyy/mm/dd')
+  </select>
+  <insert id="insert" parameterType="com.sx.ecomodule.entity.Shuiwei">
+    insert into XTSW01A (XTSW01A010, XTSW01A020, XTSW01A030, 
+      XTSW01A040, XTSW01A050, XTSW01A060, 
+      XTSW01A070, XTSW01A080)
+    values (#{xtsw01a010,jdbcType=VARCHAR}, #{xtsw01a020,jdbcType=VARCHAR}, #{xtsw01a030,jdbcType=DECIMAL}, 
+      #{xtsw01a040,jdbcType=DECIMAL}, #{xtsw01a050,jdbcType=DECIMAL}, #{xtsw01a060,jdbcType=VARCHAR}, 
+      #{xtsw01a070,jdbcType=DECIMAL}, #{xtsw01a080,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sx.ecomodule.entity.Shuiwei">
+    insert into XTSW01A
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="xtsw01a010 != null">
+        XTSW01A010,
+      </if>
+      <if test="xtsw01a020 != null">
+        XTSW01A020,
+      </if>
+      <if test="xtsw01a030 != null">
+        XTSW01A030,
+      </if>
+      <if test="xtsw01a040 != null">
+        XTSW01A040,
+      </if>
+      <if test="xtsw01a050 != null">
+        XTSW01A050,
+      </if>
+      <if test="xtsw01a060 != null">
+        XTSW01A060,
+      </if>
+      <if test="xtsw01a070 != null">
+        XTSW01A070,
+      </if>
+      <if test="xtsw01a080 != null">
+        XTSW01A080,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="xtsw01a010 != null">
+        #{xtsw01a010,jdbcType=VARCHAR},
+      </if>
+      <if test="xtsw01a020 != null">
+        #{xtsw01a020,jdbcType=VARCHAR},
+      </if>
+      <if test="xtsw01a030 != null">
+        #{xtsw01a030,jdbcType=DECIMAL},
+      </if>
+      <if test="xtsw01a040 != null">
+        #{xtsw01a040,jdbcType=DECIMAL},
+      </if>
+      <if test="xtsw01a050 != null">
+        #{xtsw01a050,jdbcType=DECIMAL},
+      </if>
+      <if test="xtsw01a060 != null">
+        #{xtsw01a060,jdbcType=VARCHAR},
+      </if>
+      <if test="xtsw01a070 != null">
+        #{xtsw01a070,jdbcType=DECIMAL},
+      </if>
+      <if test="xtsw01a080 != null">
+        #{xtsw01a080,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

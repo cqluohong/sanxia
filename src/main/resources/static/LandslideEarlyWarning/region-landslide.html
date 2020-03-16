@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>主页面-区域与单体结合</title>
+<link rel="stylesheet" type="text/css" href="http://localhost/arcgis_js_api/library/3.18/3.18/dijit/themes/claro/claro.css" />
+<link rel="stylesheet" type="text/css" href="http://localhost/arcgis_js_api/library/3.18/3.18/esri/css/esri.css" />
+<script src="http://localhost/arcgis_js_api/library/3.18/3.18/init.js"></script>
+<link href="/x-admin/lib/layui/css/layui.css" rel="stylesheet">
+<script type="text/javascript" src="/x-admin/lib/layui/layui.js"></script>
+<script type="text/javascript" src="/x-admin/js/jquery.min.js"></script>
+<script src="./widget.js"></script>
+</head>
+<style>
+html, body, #map {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+#searchFeature {
+	display: block;
+	position: absolute;
+	z-index: 2;
+	top: 20px;
+	left: 74px;
+}
+
+#myForm {
+	display: block;
+	position: absolute;
+	z-index: 2;
+	top: 20px;
+	right: 74px;
+}
+
+#HomeButton {
+	position: absolute;
+	top: 95px;
+	left: 20px;
+	z-index: 50;
+}
+</style>
+<body>
+	<div id="map">
+		<div id="HomeButton"></div>
+	</div>
+	<div id="searchFeature"></div>
+	<form class="layui-form" action="" id="myForm" name="myForm">
+		<div class="layui-form-item">
+			<div class="layui-input-inline">
+				<select name="regionType" id="regionType" lay-filter="regionType">
+					<option value="1" selected>危险性评价</option>
+					<option value="2">风险性评价</option>
+				</select>
+			</div>
+			<div class="layui-inline">
+				<div class="layui-input-inline">
+					<input type="text" class="layui-input" name="date" id="date" value="">
+				</div>
+			</div>
+		</div>
+</form>
+</body>
+<script type="text/javascript">
+ 	function formSubmit(){
+		$.ajax({
+	        type: "POST",
+	        dataType: "json",
+	        url: "../mapServlet" ,
+	        data: $('#myForm').serialize(),
+	        success: function (result) {
+	            console.log(result);
+	            if (result.resultCode == 200) {
+	                alert("SUCCESS");
+	            };
+	        },
+	        error : function() {
+	            alert("异常！");
+	        }
+	    });
+	}
+	function formatDate(datetime) {
+            // 获取年月日时分秒值  slice(-2)过滤掉大于10日期前面的0
+            var year = datetime.getFullYear(),
+                month = ("0" + (datetime.getMonth() + 1)).slice(-2),
+                date = ("0" + datetime.getDate()).slice(-2);
+            // 拼接
+            var result = year + "/"+ month +"/"+ date;
+            // 返回
+            return result;
+    }
+
+	layui.use([ 'form', 'laydate' ], function() {
+		var form = layui.form, laydate = layui.laydate;
+		//初始赋值
+		laydate.render({
+			elem : '#date',
+			value : new Date(),
+			isInitValue : true,
+			done: function(value, date, endDate){
+		  	}
+		});
+		form.on('select(regionType)', function(data){
+			formSubmit();
+		});
+	});
+ 	require([ "esri/map", "esri/geometry/Extent","esri/layers/FeatureLayer",
+    	"esri/layers/ArcGISDynamicMapServiceLayer","esri/tasks/QueryTask",
+    	"esri/tasks/query","esri/SpatialReference"],
+    	function(Map, Extent,FeatureLayer, ArcGISDynamicMapServiceLayer,QueryTask,Query,SpatialReference) {
+    		var initExtent = new Extent({
+    			"xmin" : 110.222,
+    			"ymin" : 30.001,
+    			"xmax" : 110.999,
+    			"ymax" : 31.666,
+    			"spatialReference" : {
+    				"wkid" : 4326
+    			}
+    		});
+    		map = new Map("map", {
+    			center : [ 110.907033, 30.95588729 ],
+    			extent : esri.geometry.geographicToWebMercator(initExtent),
+    			showLabels : true
+    		});
+    		homeButton(map);
+    		var regionService = "http://localhost:6080/arcgis/rest/services/sange/MapServer";
+    		var pointService = "http://localhost:6080/arcgis/rest/services/disaster/MapServer/0";
+    		var regionLayer = new ArcGISDynamicMapServiceLayer(regionService);
+
+    		var pointLayer = new FeatureLayer(pointService, {
+    			outFields : [ "*" ]
+    		})
+    		// pointLayer.setDefinitionExpression("预警等级<3");
+    		map.addLayer(regionLayer);
+    		let queryTask = new QueryTask(pointService);
+    		let query = new Query();
+    		query.where = "判据 = 1"
+    		query.outFields = ["ID","灾害体名称","区县","乡镇","村","经度_度","纬度_度"];
+    		query.returnGeometry =true;
+    		// console.log($("#myForm").serialize());
+            queryTask.execute(query, function(featureSet){
+                uploaddatas =[];
+                for(let feature of featureSet.features){
+                    let data = {};
+                    data['id'] = feature.attributes['ID'];
+                    data['name'] = feature.attributes['灾害体名称'];
+                    data['county'] = feature.attributes['区县'];
+                    data['rural'] = feature.attributes['乡镇'];
+                    data['village'] = feature.attributes['村'];
+                    data['x'] = feature.attributes['经度_度'];
+                    data['y'] = feature.attributes['纬度_度'];
+                    data['time'] = formatDate(new Date());
+                    uploaddatas.push(data);
+                }
+                console.log(uploaddatas);
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "/getzaihaidianColor" ,
+                    contentType : 'application/json;charset=utf-8',
+                    data: JSON.stringify(uploaddatas),
+                    success: function (result) {
+                        console.log(result);
+                    },
+                    error : function() {
+                        // alert("异常！");
+                    }
+                });
+            });
+    		// searchFeature(map, pointLayer);
+    		// renderer(pointLayer, "预警等级");
+    		// showLabel(pointLayer, "灾害体名称");
+    	});
+</script>
+</html>

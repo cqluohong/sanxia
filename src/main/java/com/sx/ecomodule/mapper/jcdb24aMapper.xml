@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.ecomodule.dao.jcdb24aMapper">
+  <resultMap id="BaseResultMap" type="com.sx.ecomodule.entity.jcdb24a">
+    <result column="JCDB24A010" jdbcType="VARCHAR" property="jcdb24a010" />
+    <result column="JCDB24A020" jdbcType="VARCHAR" property="jcdb24a020" />
+    <result column="JCDB24A030" jdbcType="TIMESTAMP" property="jcdb24a030" />
+    <result column="JCDB24A040" jdbcType="VARCHAR" property="jcdb24a040" />
+    <result column="JCDB24A050" jdbcType="DECIMAL" property="jcdb24a050" />
+    <result column="JCDB24A060" jdbcType="DECIMAL" property="jcdb24a060" />
+    <result column="JCDB24A070" jdbcType="DECIMAL" property="jcdb24a070" />
+    <result column="JCDB24A080" jdbcType="VARCHAR" property="jcdb24a080" />
+    <result column="JCDB24A090" jdbcType="VARCHAR" property="jcdb24a090" />
+    <result column="JCDB24A100" jdbcType="VARCHAR" property="jcdb24a100" />
+    <result column="JCDB24A110" jdbcType="VARCHAR" property="jcdb24a110" />
+  </resultMap>
+
+  <select id="queryBytimeandloc" resultType="com.sx.ecomodule.entity.jcdb24a">
+    select * from JCDB24A
+    where JCDB24A020 = #{loc} and JCDB24A030 = to_date(#{time},'yyyy/mm/dd')
+  </select>
+  <insert id="insert" parameterType="com.sx.ecomodule.entity.jcdb24a">
+    insert into JCDB24A (JCDB24A010, JCDB24A020, JCDB24A030, 
+      JCDB24A040, JCDB24A050, JCDB24A060, 
+      JCDB24A070, JCDB24A080, JCDB24A090, 
+      JCDB24A100, JCDB24A110)
+    values (#{jcdb24a010,jdbcType=VARCHAR}, #{jcdb24a020,jdbcType=VARCHAR}, #{jcdb24a030,jdbcType=TIMESTAMP}, 
+      #{jcdb24a040,jdbcType=VARCHAR}, #{jcdb24a050,jdbcType=DECIMAL}, #{jcdb24a060,jdbcType=DECIMAL}, 
+      #{jcdb24a070,jdbcType=DECIMAL}, #{jcdb24a080,jdbcType=VARCHAR}, #{jcdb24a090,jdbcType=VARCHAR}, 
+      #{jcdb24a100,jdbcType=VARCHAR}, #{jcdb24a110,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sx.ecomodule.entity.jcdb24a">
+    insert into JCDB24A
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jcdb24a010 != null">
+        JCDB24A010,
+      </if>
+      <if test="jcdb24a020 != null">
+        JCDB24A020,
+      </if>
+      <if test="jcdb24a030 != null">
+        JCDB24A030,
+      </if>
+      <if test="jcdb24a040 != null">
+        JCDB24A040,
+      </if>
+      <if test="jcdb24a050 != null">
+        JCDB24A050,
+      </if>
+      <if test="jcdb24a060 != null">
+        JCDB24A060,
+      </if>
+      <if test="jcdb24a070 != null">
+        JCDB24A070,
+      </if>
+      <if test="jcdb24a080 != null">
+        JCDB24A080,
+      </if>
+      <if test="jcdb24a090 != null">
+        JCDB24A090,
+      </if>
+      <if test="jcdb24a100 != null">
+        JCDB24A100,
+      </if>
+      <if test="jcdb24a110 != null">
+        JCDB24A110,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jcdb24a010 != null">
+        #{jcdb24a010,jdbcType=VARCHAR},
+      </if>
+      <if test="jcdb24a020 != null">
+        #{jcdb24a020,jdbcType=VARCHAR},
+      </if>
+      <if test="jcdb24a030 != null">
+        #{jcdb24a030,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jcdb24a040 != null">
+        #{jcdb24a040,jdbcType=VARCHAR},
+      </if>
+      <if test="jcdb24a050 != null">
+        #{jcdb24a050,jdbcType=DECIMAL},
+      </if>
+      <if test="jcdb24a060 != null">
+        #{jcdb24a060,jdbcType=DECIMAL},
+      </if>
+      <if test="jcdb24a070 != null">
+        #{jcdb24a070,jdbcType=DECIMAL},
+      </if>
+      <if test="jcdb24a080 != null">
+        #{jcdb24a080,jdbcType=VARCHAR},
+      </if>
+      <if test="jcdb24a090 != null">
+        #{jcdb24a090,jdbcType=VARCHAR},
+      </if>
+      <if test="jcdb24a100 != null">
+        #{jcdb24a100,jdbcType=VARCHAR},
+      </if>
+      <if test="jcdb24a110 != null">
+        #{jcdb24a110,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.ecomodule.dao.qxzMapper">
+  <resultMap id="BaseResultMap" type="com.sx.ecomodule.entity.qxz">
+    <id column="QXAA01A010" jdbcType="VARCHAR" property="qxaa01a010" />
+    <result column="QXAA01A020" jdbcType="VARCHAR" property="qxaa01a020" />
+    <result column="QXAA01A030" jdbcType="VARCHAR" property="qxaa01a030" />
+    <result column="QXAA01A040" jdbcType="DECIMAL" property="qxaa01a040" />
+    <result column="QXAA01A050" jdbcType="DECIMAL" property="qxaa01a050" />
+    <result column="QXAA01A060" jdbcType="DECIMAL" property="qxaa01a060" />
+    <result column="QXAA01A070" jdbcType="VARCHAR" property="qxaa01a070" />
+    <result column="QXAA01A080" jdbcType="VARCHAR" property="qxaa01a080" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    QXAA01A010, QXAA01A020, QXAA01A030, QXAA01A040, QXAA01A050, QXAA01A060, QXAA01A070, 
+    QXAA01A080
+  </sql>
+  <select id="selectBypage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from QXAA01A
+    where rownum &lt; #{end} minus
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM QXAA01A
+     WHERE ROWNUM &lt; #{start}
+  </select>
+  <select id="selectByfuzzy" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from QXAA01A where QXAA01A010 like concat(concat('%',#{fuzzy}),'%')
+  </select>
+  <select id="selectCounts" resultType="Integer">
+    SELECT COUNT(*) FROM QXAA01A
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from QXAA01A
+    where QXAA01A010 = #{qxaa01a010,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from QXAA01A
+    where QXAA01A010 = #{qxaa01a010,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sx.ecomodule.entity.qxz">
+    insert into QXAA01A (QXAA01A010, QXAA01A020, QXAA01A030, 
+      QXAA01A040, QXAA01A050, QXAA01A060, 
+      QXAA01A070, QXAA01A080)
+    values (#{qxaa01a010,jdbcType=VARCHAR}, #{qxaa01a020,jdbcType=VARCHAR}, #{qxaa01a030,jdbcType=VARCHAR}, 
+      #{qxaa01a040,jdbcType=DECIMAL}, #{qxaa01a050,jdbcType=DECIMAL}, #{qxaa01a060,jdbcType=DECIMAL}, 
+      #{qxaa01a070,jdbcType=VARCHAR}, #{qxaa01a080,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sx.ecomodule.entity.qxz">
+    insert into QXAA01A
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="qxaa01a010 != null">
+        QXAA01A010,
+      </if>
+      <if test="qxaa01a020 != null">
+        QXAA01A020,
+      </if>
+      <if test="qxaa01a030 != null">
+        QXAA01A030,
+      </if>
+      <if test="qxaa01a040 != null">
+        QXAA01A040,
+      </if>
+      <if test="qxaa01a050 != null">
+        QXAA01A050,
+      </if>
+      <if test="qxaa01a060 != null">
+        QXAA01A060,
+      </if>
+      <if test="qxaa01a070 != null">
+        QXAA01A070,
+      </if>
+      <if test="qxaa01a080 != null">
+        QXAA01A080,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="qxaa01a010 != null">
+        #{qxaa01a010,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa01a020 != null">
+        #{qxaa01a020,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa01a030 != null">
+        #{qxaa01a030,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa01a040 != null">
+        #{qxaa01a040,jdbcType=DECIMAL},
+      </if>
+      <if test="qxaa01a050 != null">
+        #{qxaa01a050,jdbcType=DECIMAL},
+      </if>
+      <if test="qxaa01a060 != null">
+        #{qxaa01a060,jdbcType=DECIMAL},
+      </if>
+      <if test="qxaa01a070 != null">
+        #{qxaa01a070,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa01a080 != null">
+        #{qxaa01a080,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sx.ecomodule.entity.qxz">
+    update QXAA01A
+    <set>
+      <if test="qxaa01a020 != null">
+        QXAA01A020 = #{qxaa01a020,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa01a030 != null">
+        QXAA01A030 = #{qxaa01a030,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa01a040 != null">
+        QXAA01A040 = #{qxaa01a040,jdbcType=DECIMAL},
+      </if>
+      <if test="qxaa01a050 != null">
+        QXAA01A050 = #{qxaa01a050,jdbcType=DECIMAL},
+      </if>
+      <if test="qxaa01a060 != null">
+        QXAA01A060 = #{qxaa01a060,jdbcType=DECIMAL},
+      </if>
+      <if test="qxaa01a070 != null">
+        QXAA01A070 = #{qxaa01a070,jdbcType=VARCHAR},
+      </if>
+      <if test="qxaa01a080 != null">
+        QXAA01A080 = #{qxaa01a080,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where QXAA01A010 = #{qxaa01a010,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sx.ecomodule.entity.qxz">
+    update QXAA01A
+    set QXAA01A020 = #{qxaa01a020,jdbcType=VARCHAR},
+      QXAA01A030 = #{qxaa01a030,jdbcType=VARCHAR},
+      QXAA01A040 = #{qxaa01a040,jdbcType=DECIMAL},
+      QXAA01A050 = #{qxaa01a050,jdbcType=DECIMAL},
+      QXAA01A060 = #{qxaa01a060,jdbcType=DECIMAL},
+      QXAA01A070 = #{qxaa01a070,jdbcType=VARCHAR},
+      QXAA01A080 = #{qxaa01a080,jdbcType=VARCHAR}
+    where QXAA01A010 = #{qxaa01a010,jdbcType=VARCHAR}
+  </update>
+</mapper>

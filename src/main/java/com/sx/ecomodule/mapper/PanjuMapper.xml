@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.ecomodule.dao.PanjuMapper">
+  <resultMap id="BaseResultMap" type="com.sx.ecomodule.entity.Panju">
+    <id column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="COUNTY" jdbcType="VARCHAR" property="county" />
+    <result column="RURAL" jdbcType="VARCHAR" property="rural" />
+    <result column="VILLAGE" jdbcType="VARCHAR" property="village" />
+    <result column="DISPLACE_D" jdbcType="DECIMAL" property="displaceD" />
+    <result column="DISPLACE_U" jdbcType="DECIMAL" property="displaceU" />
+    <result column="RATE_D" jdbcType="DECIMAL" property="rateD" />
+    <result column="RATE_U" jdbcType="DECIMAL" property="rateU" />
+    <result column="RAIN_D" jdbcType="DECIMAL" property="rainD" />
+    <result column="RAIN_U" jdbcType="DECIMAL" property="rainU" />
+    <result column="RAINFALL_INTEN4" jdbcType="DECIMAL" property="rainfallInten4" />
+    <result column="RAINFALL_INTEN5" jdbcType="DECIMAL" property="rainfallInten5" />
+    <result column="WARN_LEVEL" jdbcType="DECIMAL" property="warnLevel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UUID, ID, NAME, COUNTY, RURAL, VILLAGE, DISPLACE_D, DISPLACE_U, RATE_D, RATE_U, RAIN_D, 
+    RAIN_U, RAINFALL_INTEN4, RAINFALL_INTEN5, WARN_LEVEL
+  </sql>
+  <select id="selectBypage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from PANJUKU
+    where rownum &lt; #{end} minus
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM PANJUKU
+    WHERE ROWNUM &lt; #{start}
+  </select>
+  <select id="selectByfuzzy" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from PANJUKU where NAME like concat(concat('%',#{fuzzy}),'%')
+  </select>
+  <select id="selectCounts" resultType="Integer">
+    SELECT COUNT(*) FROM PANJUKU
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PANJUKU
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from PANJUKU
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sx.ecomodule.entity.Panju">
+    insert into PANJUKU (UUID, ID, NAME, 
+      COUNTY, RURAL, VILLAGE, 
+      DISPLACE_D, DISPLACE_U, RATE_D, 
+      RATE_U, RAIN_D, RAIN_U, 
+      RAINFALL_INTEN4, RAINFALL_INTEN5, WARN_LEVEL
+      )
+    values (#{uuid,jdbcType=VARCHAR}, #{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{county,jdbcType=VARCHAR}, #{rural,jdbcType=VARCHAR}, #{village,jdbcType=VARCHAR}, 
+      #{displaceD,jdbcType=DECIMAL}, #{displaceU,jdbcType=DECIMAL}, #{rateD,jdbcType=DECIMAL}, 
+      #{rateU,jdbcType=DECIMAL}, #{rainD,jdbcType=DECIMAL}, #{rainU,jdbcType=DECIMAL}, 
+      #{rainfallInten4,jdbcType=DECIMAL}, #{rainfallInten5,jdbcType=DECIMAL}, #{warnLevel,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sx.ecomodule.entity.Panju">
+    insert into PANJUKU
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        UUID,
+      </if>
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="county != null">
+        COUNTY,
+      </if>
+      <if test="rural != null">
+        RURAL,
+      </if>
+      <if test="village != null">
+        VILLAGE,
+      </if>
+      <if test="displaceD != null">
+        DISPLACE_D,
+      </if>
+      <if test="displaceU != null">
+        DISPLACE_U,
+      </if>
+      <if test="rateD != null">
+        RATE_D,
+      </if>
+      <if test="rateU != null">
+        RATE_U,
+      </if>
+      <if test="rainD != null">
+        RAIN_D,
+      </if>
+      <if test="rainU != null">
+        RAIN_U,
+      </if>
+      <if test="rainfallInten4 != null">
+        RAINFALL_INTEN4,
+      </if>
+      <if test="rainfallInten5 != null">
+        RAINFALL_INTEN5,
+      </if>
+      <if test="warnLevel != null">
+        WARN_LEVEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="rural != null">
+        #{rural,jdbcType=VARCHAR},
+      </if>
+      <if test="village != null">
+        #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="displaceD != null">
+        #{displaceD,jdbcType=DECIMAL},
+      </if>
+      <if test="displaceU != null">
+        #{displaceU,jdbcType=DECIMAL},
+      </if>
+      <if test="rateD != null">
+        #{rateD,jdbcType=DECIMAL},
+      </if>
+      <if test="rateU != null">
+        #{rateU,jdbcType=DECIMAL},
+      </if>
+      <if test="rainD != null">
+        #{rainD,jdbcType=DECIMAL},
+      </if>
+      <if test="rainU != null">
+        #{rainU,jdbcType=DECIMAL},
+      </if>
+      <if test="rainfallInten4 != null">
+        #{rainfallInten4,jdbcType=DECIMAL},
+      </if>
+      <if test="rainfallInten5 != null">
+        #{rainfallInten5,jdbcType=DECIMAL},
+      </if>
+      <if test="warnLevel != null">
+        #{warnLevel,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sx.ecomodule.entity.Panju">
+    update PANJUKU
+    <set>
+      <if test="id != null">
+        ID = #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        COUNTY = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="rural != null">
+        RURAL = #{rural,jdbcType=VARCHAR},
+      </if>
+      <if test="village != null">
+        VILLAGE = #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="displaceD != null">
+        DISPLACE_D = #{displaceD,jdbcType=DECIMAL},
+      </if>
+      <if test="displaceU != null">
+        DISPLACE_U = #{displaceU,jdbcType=DECIMAL},
+      </if>
+      <if test="rateD != null">
+        RATE_D = #{rateD,jdbcType=DECIMAL},
+      </if>
+      <if test="rateU != null">
+        RATE_U = #{rateU,jdbcType=DECIMAL},
+      </if>
+      <if test="rainD != null">
+        RAIN_D = #{rainD,jdbcType=DECIMAL},
+      </if>
+      <if test="rainU != null">
+        RAIN_U = #{rainU,jdbcType=DECIMAL},
+      </if>
+      <if test="rainfallInten4 != null">
+        RAINFALL_INTEN4 = #{rainfallInten4,jdbcType=DECIMAL},
+      </if>
+      <if test="rainfallInten5 != null">
+        RAINFALL_INTEN5 = #{rainfallInten5,jdbcType=DECIMAL},
+      </if>
+      <if test="warnLevel != null">
+        WARN_LEVEL = #{warnLevel,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sx.ecomodule.entity.Panju">
+    update PANJUKU
+    set ID = #{id,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      COUNTY = #{county,jdbcType=VARCHAR},
+      RURAL = #{rural,jdbcType=VARCHAR},
+      VILLAGE = #{village,jdbcType=VARCHAR},
+      DISPLACE_D = #{displaceD,jdbcType=DECIMAL},
+      DISPLACE_U = #{displaceU,jdbcType=DECIMAL},
+      RATE_D = #{rateD,jdbcType=DECIMAL},
+      RATE_U = #{rateU,jdbcType=DECIMAL},
+      RAIN_D = #{rainD,jdbcType=DECIMAL},
+      RAIN_U = #{rainU,jdbcType=DECIMAL},
+      RAINFALL_INTEN4 = #{rainfallInten4,jdbcType=DECIMAL},
+      RAINFALL_INTEN5 = #{rainfallInten5,jdbcType=DECIMAL},
+      WARN_LEVEL = #{warnLevel,jdbcType=DECIMAL}
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

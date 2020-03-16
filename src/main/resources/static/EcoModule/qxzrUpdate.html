@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+<link href="/x-admin/lib/layui/css/layui.css" rel="stylesheet">
+<script type="text/javascript" src="/x-admin/lib/layui/layui.js"></script>
+<script type="text/javascript" src="/x-admin/js/jquery.min.js"></script>
+</head>
+<body>
+	<div id="qxzrEdit" name="qxzrEdit" style="padding: 10px 10px 10px" >
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">站号</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa05a010" id="qxaa05a010" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa05a020" id="qxaa05a020" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">日小型蒸发量</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa05a030" id="qxaa05a030" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">日大型蒸发量</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa05a040" id="qxaa05a040" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">日降水量</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa05a050" id="qxaa05a050" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">小时最大降雨量</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa05a100" id="qxaa05a100" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">日最高气温</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa05a070" id="qxaa05a070" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">日最低气温</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa05a080" id="qxaa05a080" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">日平均气温</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa05a060" id="qxaa05a060" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">日最大风速</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa05a090" id="qxaa05a090" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+	layui.use(['form','layer','table'], function() {
+        var form = layui.form;
+        var layer = layui.layer;
+        //监听提交
+        form.on('submit(formDemo)', function(data) {
+            var url="/qxzrUpdate";
+            $.ajax({
+                type : "POST",
+                url : url,
+                data:JSON.stringify(data.field),
+                contentType : 'application/json',
+                success : function(result) {
+                    layer.alert('操作成功！', {icon: 1}, function(index){
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index);
+                        //表格刷新
+                        parent.layui.table.reload('reload1',{page:{curr:1}});
+                    });
+                }
+            });
+            //layui form表单，在ajax提交后，需要在后面添加return false
+            return false;
+        });
+    });
+	</script>
+</body>
+</html>

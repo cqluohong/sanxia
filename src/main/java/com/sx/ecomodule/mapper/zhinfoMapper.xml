@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.ecomodule.dao.zhinfoMapper">
+  <resultMap id="BaseResultMap" type="com.sx.ecomodule.entity.zhinfo">
+    <result column="ZHBB01A010" jdbcType="VARCHAR" property="zhbb01a010" />
+    <result column="ZHBB01A020" jdbcType="VARCHAR" property="zhbb01a020" />
+    <result column="ZHBB01A042" jdbcType="VARCHAR" property="zhbb01a042" />
+    <result column="ZHBB01A044" jdbcType="VARCHAR" property="zhbb01a044" />
+    <result column="ZHBB01A110" jdbcType="DECIMAL" property="zhbb01a110" />
+    <result column="ZHBB01A120" jdbcType="DECIMAL" property="zhbb01a120" />
+    <result column="ZHBB01A060" jdbcType="VARCHAR" property="zhbb01a060" />
+    <result column="ZHBB01A071" jdbcType="VARCHAR" property="zhbb01a071" />
+    <result column="ZHBB01A140" jdbcType="VARCHAR" property="zhbb01a140" />
+    <result column="ZHBB01A190" jdbcType="VARCHAR" property="zhbb01a190" />
+    <result column="ZHBB01A200" jdbcType="VARCHAR" property="zhbb01a200" />
+    <result column="ZHBB01A264" jdbcType="VARCHAR" property="zhbb01a264" />
+    <result column="ZHBB01A240" jdbcType="VARCHAR" property="zhbb01a240" />
+    <result column="ZHBB01A245" jdbcType="VARCHAR" property="zhbb01a245" />
+    <result column="ZHBB01A275" jdbcType="VARCHAR" property="zhbb01a275" />
+    <result column="ZHBB01A310" jdbcType="VARCHAR" property="zhbb01a310" />
+    <result column="ZHBB01A340" jdbcType="DECIMAL" property="zhbb01a340" />
+    <result column="ZHBB01A350" jdbcType="DECIMAL" property="zhbb01a350" />
+    <result column="ZHBB01A360" jdbcType="DECIMAL" property="zhbb01a360" />
+    <result column="ZHBB01A365" jdbcType="DECIMAL" property="zhbb01a365" />
+    <result column="ZHBB01A370" jdbcType="DECIMAL" property="zhbb01a370" />
+    <result column="ZHBB01A375" jdbcType="DECIMAL" property="zhbb01a375" />
+    <result column="ZHBB01A380" jdbcType="DECIMAL" property="zhbb01a380" />
+    <result column="ZHBB01A385" jdbcType="DECIMAL" property="zhbb01a385" />
+    <result column="ZHBB01A390" jdbcType="DECIMAL" property="zhbb01a390" />
+    <result column="ZHBB01A400" jdbcType="DECIMAL" property="zhbb01a400" />
+    <result column="ZHBB01A410" jdbcType="VARCHAR" property="zhbb01a410" />
+    <result column="ZHBB01A720" jdbcType="VARCHAR" property="zhbb01a720" />
+    <result column="ZHBB01A730" jdbcType="VARCHAR" property="zhbb01a730" />
+    <result column="ZHBB01A780" jdbcType="VARCHAR" property="zhbb01a780" />
+    <result column="ZHBB01A810" jdbcType="DECIMAL" property="zhbb01a810" />
+    <result column="ZHBB01A815" jdbcType="DECIMAL" property="zhbb01a815" />
+    <result column="ZHBB01A820" jdbcType="DECIMAL" property="zhbb01a820" />
+    <result column="ZHBB01A830" jdbcType="DECIMAL" property="zhbb01a830" />
+    <result column="ZHBB01A840" jdbcType="DECIMAL" property="zhbb01a840" />
+    <result column="ZHBB01A842" jdbcType="DECIMAL" property="zhbb01a842" />
+    <result column="ZHBB01A844" jdbcType="DECIMAL" property="zhbb01a844" />
+    <result column="ZHBB01A846" jdbcType="DECIMAL" property="zhbb01a846" />
+    <result column="ZHBB01A848" jdbcType="VARCHAR" property="zhbb01a848" />
+    <result column="ZHBB01A850" jdbcType="DECIMAL" property="zhbb01a850" />
+    <result column="ZHBB01A860" jdbcType="VARCHAR" property="zhbb01a860" />
+    <result column="ZHBB01A862" jdbcType="DECIMAL" property="zhbb01a862" />
+    <result column="ZHBB01A864" jdbcType="VARCHAR" property="zhbb01a864" />
+    <result column="ZHBB01A878" jdbcType="VARCHAR" property="zhbb01a878" />
+    <result column="ZHBB01A872" jdbcType="VARCHAR" property="zhbb01a872" />
+    <result column="ZHBB01A880" jdbcType="VARCHAR" property="zhbb01a880" />
+    <result column="ZHBB01A882" jdbcType="VARCHAR" property="zhbb01a882" />
+    <result column="ZHBB01A884" jdbcType="VARCHAR" property="zhbb01a884" />
+    <result column="ZHBB01A886" jdbcType="VARCHAR" property="zhbb01a886" />
+    <result column="ZHBB01A877" jdbcType="VARCHAR" property="zhbb01a877" />
+    <result column="ZHBB01A940" jdbcType="VARCHAR" property="zhbb01a940" />
+    <result column="ZHBB01A950" jdbcType="VARCHAR" property="zhbb01a950" />
+    <result column="ZHBB01A960" jdbcType="VARCHAR" property="zhbb01a960" />
+  </resultMap>
+  <select id="queryByAll" resultMap="BaseResultMap">
+    select * from ZHBB01A
+  </select>
+  <insert id="insert" parameterType="com.sx.ecomodule.entity.zhinfo">
+    insert into ZHBB01A (ZHBB01A010, ZHBB01A020, ZHBB01A042, 
+      ZHBB01A044, ZHBB01A110, ZHBB01A120, 
+      ZHBB01A060, ZHBB01A071, ZHBB01A140, 
+      ZHBB01A190, ZHBB01A200, ZHBB01A264, 
+      ZHBB01A240, ZHBB01A245, ZHBB01A275, 
+      ZHBB01A310, ZHBB01A340, ZHBB01A350, 
+      ZHBB01A360, ZHBB01A365, ZHBB01A370, 
+      ZHBB01A375, ZHBB01A380, ZHBB01A385, 
+      ZHBB01A390, ZHBB01A400, ZHBB01A410, 
+      ZHBB01A720, ZHBB01A730, ZHBB01A780, 
+      ZHBB01A810, ZHBB01A815, ZHBB01A820, 
+      ZHBB01A830, ZHBB01A840, ZHBB01A842, 
+      ZHBB01A844, ZHBB01A846, ZHBB01A848, 
+      ZHBB01A850, ZHBB01A860, ZHBB01A862, 
+      ZHBB01A864, ZHBB01A878, ZHBB01A872, 
+      ZHBB01A880, ZHBB01A882, ZHBB01A884, 
+      ZHBB01A886, ZHBB01A877, ZHBB01A940, 
+      ZHBB01A950, ZHBB01A960)
+    values (#{zhbb01a010,jdbcType=VARCHAR}, #{zhbb01a020,jdbcType=VARCHAR}, #{zhbb01a042,jdbcType=VARCHAR}, 
+      #{zhbb01a044,jdbcType=VARCHAR}, #{zhbb01a110,jdbcType=DECIMAL}, #{zhbb01a120,jdbcType=DECIMAL}, 
+      #{zhbb01a060,jdbcType=VARCHAR}, #{zhbb01a071,jdbcType=VARCHAR}, #{zhbb01a140,jdbcType=VARCHAR}, 
+      #{zhbb01a190,jdbcType=VARCHAR}, #{zhbb01a200,jdbcType=VARCHAR}, #{zhbb01a264,jdbcType=VARCHAR}, 
+      #{zhbb01a240,jdbcType=VARCHAR}, #{zhbb01a245,jdbcType=VARCHAR}, #{zhbb01a275,jdbcType=VARCHAR}, 
+      #{zhbb01a310,jdbcType=VARCHAR}, #{zhbb01a340,jdbcType=DECIMAL}, #{zhbb01a350,jdbcType=DECIMAL}, 
+      #{zhbb01a360,jdbcType=DECIMAL}, #{zhbb01a365,jdbcType=DECIMAL}, #{zhbb01a370,jdbcType=DECIMAL}, 
+      #{zhbb01a375,jdbcType=DECIMAL}, #{zhbb01a380,jdbcType=DECIMAL}, #{zhbb01a385,jdbcType=DECIMAL}, 
+      #{zhbb01a390,jdbcType=DECIMAL}, #{zhbb01a400,jdbcType=DECIMAL}, #{zhbb01a410,jdbcType=VARCHAR}, 
+      #{zhbb01a720,jdbcType=VARCHAR}, #{zhbb01a730,jdbcType=VARCHAR}, #{zhbb01a780,jdbcType=VARCHAR}, 
+      #{zhbb01a810,jdbcType=DECIMAL}, #{zhbb01a815,jdbcType=DECIMAL}, #{zhbb01a820,jdbcType=DECIMAL}, 
+      #{zhbb01a830,jdbcType=DECIMAL}, #{zhbb01a840,jdbcType=DECIMAL}, #{zhbb01a842,jdbcType=DECIMAL}, 
+      #{zhbb01a844,jdbcType=DECIMAL}, #{zhbb01a846,jdbcType=DECIMAL}, #{zhbb01a848,jdbcType=VARCHAR}, 
+      #{zhbb01a850,jdbcType=DECIMAL}, #{zhbb01a860,jdbcType=VARCHAR}, #{zhbb01a862,jdbcType=DECIMAL}, 
+      #{zhbb01a864,jdbcType=VARCHAR}, #{zhbb01a878,jdbcType=VARCHAR}, #{zhbb01a872,jdbcType=VARCHAR}, 
+      #{zhbb01a880,jdbcType=VARCHAR}, #{zhbb01a882,jdbcType=VARCHAR}, #{zhbb01a884,jdbcType=VARCHAR}, 
+      #{zhbb01a886,jdbcType=VARCHAR}, #{zhbb01a877,jdbcType=VARCHAR}, #{zhbb01a940,jdbcType=VARCHAR}, 
+      #{zhbb01a950,jdbcType=VARCHAR}, #{zhbb01a960,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sx.ecomodule.entity.zhinfo">
+    insert into ZHBB01A
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="zhbb01a010 != null">
+        ZHBB01A010,
+      </if>
+      <if test="zhbb01a020 != null">
+        ZHBB01A020,
+      </if>
+      <if test="zhbb01a042 != null">
+        ZHBB01A042,
+      </if>
+      <if test="zhbb01a044 != null">
+        ZHBB01A044,
+      </if>
+      <if test="zhbb01a110 != null">
+        ZHBB01A110,
+      </if>
+      <if test="zhbb01a120 != null">
+        ZHBB01A120,
+      </if>
+      <if test="zhbb01a060 != null">
+        ZHBB01A060,
+      </if>
+      <if test="zhbb01a071 != null">
+        ZHBB01A071,
+      </if>
+      <if test="zhbb01a140 != null">
+        ZHBB01A140,
+      </if>
+      <if test="zhbb01a190 != null">
+        ZHBB01A190,
+      </if>
+      <if test="zhbb01a200 != null">
+        ZHBB01A200,
+      </if>
+      <if test="zhbb01a264 != null">
+        ZHBB01A264,
+      </if>
+      <if test="zhbb01a240 != null">
+        ZHBB01A240,
+      </if>
+      <if test="zhbb01a245 != null">
+        ZHBB01A245,
+      </if>
+      <if test="zhbb01a275 != null">
+        ZHBB01A275,
+      </if>
+      <if test="zhbb01a310 != null">
+        ZHBB01A310,
+      </if>
+      <if test="zhbb01a340 != null">
+        ZHBB01A340,
+      </if>
+      <if test="zhbb01a350 != null">
+        ZHBB01A350,
+      </if>
+      <if test="zhbb01a360 != null">
+        ZHBB01A360,
+      </if>
+      <if test="zhbb01a365 != null">
+        ZHBB01A365,
+      </if>
+      <if test="zhbb01a370 != null">
+        ZHBB01A370,
+      </if>
+      <if test="zhbb01a375 != null">
+        ZHBB01A375,
+      </if>
+      <if test="zhbb01a380 != null">
+        ZHBB01A380,
+      </if>
+      <if test="zhbb01a385 != null">
+        ZHBB01A385,
+      </if>
+      <if test="zhbb01a390 != null">
+        ZHBB01A390,
+      </if>
+      <if test="zhbb01a400 != null">
+        ZHBB01A400,
+      </if>
+      <if test="zhbb01a410 != null">
+        ZHBB01A410,
+      </if>
+      <if test="zhbb01a720 != null">
+        ZHBB01A720,
+      </if>
+      <if test="zhbb01a730 != null">
+        ZHBB01A730,
+      </if>
+      <if test="zhbb01a780 != null">
+        ZHBB01A780,
+      </if>
+      <if test="zhbb01a810 != null">
+        ZHBB01A810,
+      </if>
+      <if test="zhbb01a815 != null">
+        ZHBB01A815,
+      </if>
+      <if test="zhbb01a820 != null">
+        ZHBB01A820,
+      </if>
+      <if test="zhbb01a830 != null">
+        ZHBB01A830,
+      </if>
+      <if test="zhbb01a840 != null">
+        ZHBB01A840,
+      </if>
+      <if test="zhbb01a842 != null">
+        ZHBB01A842,
+      </if>
+      <if test="zhbb01a844 != null">
+        ZHBB01A844,
+      </if>
+      <if test="zhbb01a846 != null">
+        ZHBB01A846,
+      </if>
+      <if test="zhbb01a848 != null">
+        ZHBB01A848,
+      </if>
+      <if test="zhbb01a850 != null">
+        ZHBB01A850,
+      </if>
+      <if test="zhbb01a860 != null">
+        ZHBB01A860,
+      </if>
+      <if test="zhbb01a862 != null">
+        ZHBB01A862,
+      </if>
+      <if test="zhbb01a864 != null">
+        ZHBB01A864,
+      </if>
+      <if test="zhbb01a878 != null">
+        ZHBB01A878,
+      </if>
+      <if test="zhbb01a872 != null">
+        ZHBB01A872,
+      </if>
+      <if test="zhbb01a880 != null">
+        ZHBB01A880,
+      </if>
+      <if test="zhbb01a882 != null">
+        ZHBB01A882,
+      </if>
+      <if test="zhbb01a884 != null">
+        ZHBB01A884,
+      </if>
+      <if test="zhbb01a886 != null">
+        ZHBB01A886,
+      </if>
+      <if test="zhbb01a877 != null">
+        ZHBB01A877,
+      </if>
+      <if test="zhbb01a940 != null">
+        ZHBB01A940,
+      </if>
+      <if test="zhbb01a950 != null">
+        ZHBB01A950,
+      </if>
+      <if test="zhbb01a960 != null">
+        ZHBB01A960,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="zhbb01a010 != null">
+        #{zhbb01a010,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a020 != null">
+        #{zhbb01a020,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a042 != null">
+        #{zhbb01a042,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a044 != null">
+        #{zhbb01a044,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a110 != null">
+        #{zhbb01a110,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a120 != null">
+        #{zhbb01a120,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a060 != null">
+        #{zhbb01a060,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a071 != null">
+        #{zhbb01a071,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a140 != null">
+        #{zhbb01a140,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a190 != null">
+        #{zhbb01a190,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a200 != null">
+        #{zhbb01a200,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a264 != null">
+        #{zhbb01a264,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a240 != null">
+        #{zhbb01a240,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a245 != null">
+        #{zhbb01a245,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a275 != null">
+        #{zhbb01a275,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a310 != null">
+        #{zhbb01a310,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a340 != null">
+        #{zhbb01a340,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a350 != null">
+        #{zhbb01a350,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a360 != null">
+        #{zhbb01a360,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a365 != null">
+        #{zhbb01a365,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a370 != null">
+        #{zhbb01a370,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a375 != null">
+        #{zhbb01a375,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a380 != null">
+        #{zhbb01a380,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a385 != null">
+        #{zhbb01a385,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a390 != null">
+        #{zhbb01a390,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a400 != null">
+        #{zhbb01a400,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a410 != null">
+        #{zhbb01a410,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a720 != null">
+        #{zhbb01a720,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a730 != null">
+        #{zhbb01a730,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a780 != null">
+        #{zhbb01a780,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a810 != null">
+        #{zhbb01a810,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a815 != null">
+        #{zhbb01a815,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a820 != null">
+        #{zhbb01a820,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a830 != null">
+        #{zhbb01a830,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a840 != null">
+        #{zhbb01a840,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a842 != null">
+        #{zhbb01a842,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a844 != null">
+        #{zhbb01a844,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a846 != null">
+        #{zhbb01a846,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a848 != null">
+        #{zhbb01a848,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a850 != null">
+        #{zhbb01a850,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a860 != null">
+        #{zhbb01a860,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a862 != null">
+        #{zhbb01a862,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbb01a864 != null">
+        #{zhbb01a864,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a878 != null">
+        #{zhbb01a878,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a872 != null">
+        #{zhbb01a872,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a880 != null">
+        #{zhbb01a880,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a882 != null">
+        #{zhbb01a882,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a884 != null">
+        #{zhbb01a884,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a886 != null">
+        #{zhbb01a886,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a877 != null">
+        #{zhbb01a877,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a940 != null">
+        #{zhbb01a940,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a950 != null">
+        #{zhbb01a950,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbb01a960 != null">
+        #{zhbb01a960,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

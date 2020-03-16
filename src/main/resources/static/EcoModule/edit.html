@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+<link href="/x-admin/lib/layui/css/layui.css" rel="stylesheet">
+<script type="text/javascript" src="/x-admin/lib/layui/layui.js"></script>
+<script type="text/javascript" src="/x-admin/js/jquery.min.js"></script>
+</head>
+<body>
+	<div id="qxzEdit" name="qxzEdit" style="padding: 10px 10px 10px;display: none;" >
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">站号</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a010" id="qxaa01a010" required lay-verify="required"
+						class="layui-input layui-disabled">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">站点类型</label>
+					<div class="layui-input-inline">
+						<select name="qxaa01a080" id="qxaa01a080" lay-verify="required">
+							<option value="国家站">国家站</option>
+							<option value="区域站">区域站</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">乡镇</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a020" id="qxaa01a020" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">省</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a030" id="qxaa01a030" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">经度</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a040" id="qxaa01a040" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">纬度</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a050" id="qxaa01a050" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">高程</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a060" id="qxaa01a060" class="layui-input" lay-verify="number">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">位置</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a070" id="qxaa01a070" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div id="qxzrEdit" name="qxzrEdit" style="padding: 10px 10px 10px;display: none;" >
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">站号</label>
+					<div class="layui-input-inline">
+						<input type="text" name="QXAA05A010" id="QXAA05A010" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="QXAA05A020" id="QXAA05A020" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">日小型蒸发量</label>
+					<div class="layui-input-inline">
+						<input type="text" name="QXAA05A030" id="QXAA05A030" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">日大型蒸发量</label>
+					<div class="layui-input-inline">
+						<input type="text" name="QXAA05A040" id="QXAA05A040" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">日降水量</label>
+					<div class="layui-input-inline">
+						<input type="text" name="QXAA05A050" id="QXAA05A050" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">小时最大降雨量</label>
+					<div class="layui-input-inline">
+						<input type="text" name="QXAA05A100" id="QXAA05A100" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">日最高气温</label>
+					<div class="layui-input-inline">
+						<input type="text" name="QXAA05A060" id="QXAA05A060" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">日最低气温</label>
+					<div class="layui-input-inline">
+						<input type="text" name="QXAA05A070" id="QXAA05A070" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">日平均气温</label>
+					<div class="layui-input-inline">
+						<input type="text" name="QXAA05A080" id="QXAA05A080" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">日最大风速</label>
+					<div class="layui-input-inline">
+						<input type="text" name="QXAA05A090" id="QXAA05A090" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div id="table2" name="table2" style="padding: 10px 10px 10px;display: none;">
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">灾害体编号</label>
+					<div class="layui-input-inline">
+						<input type="text" name="title" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">名称</label>
+					<div class="layui-input-inline">
+						<input type="text" name="title" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">地理位置</label>
+					<div class="layui-input-inline">
+						<input type="tel" name="phone" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">经度</label>
+					<div class="layui-input-inline">
+						<input type="tel" name="phone" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">纬度</label>
+					<div class="layui-input-inline">
+						<input type="text" name="email" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">类型</label>
+					<div class="layui-input-inline">
+						<select name="city" lay-verify="required">
+							<option value="0">北京</option>
+							<option value="1">上海</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">岸别</label>
+					<div class="layui-input-inline">
+						<select name="city" lay-verify="required">
+							<option value="0">南岸</option>
+							<option value="1">北岸</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">水系</label>
+					<div class="layui-input-inline">
+						<select name="city" lay-verify="required">
+							<option value="0">干流</option>
+							<option value="1">支流</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">离坝距离</label>
+					<div class="layui-input-inline">
+						<input type="text" name="title" class="layui-input">
+					</div>
+					<div class="layui-form-mid layui-word-aux">单位：千米</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label">治理工程</label>
+				<div class="layui-input-block">
+					<textarea name="desc" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">全貌图</label>
+				<div class="layui-input-inline">
+					<input name="avatar" lay-verify="required" id="LAY_avatarSrc" placeholder="图片地址" value="http://cdn.layui.com/avatar/168.jpg" class="layui-input">
+				</div>
+				<div class="layui-input-inline layui-btn-container" style="width: auto;">
+					<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+						<i class="layui-icon"></i>上传图片
+					</button>
+					<input class="layui-upload-file" type="file" accept="undefined" name="file">
+					<button class="layui-btn layui-btn-primary" layadmin-event="avartatPreview">查看图片</button>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">平面位置图</label>
+				<div class="layui-input-inline">
+					<input name="avatar" lay-verify="required" id="LAY_avatarSrc" placeholder="图片地址" value="http://cdn.layui.com/avatar/168.jpg" class="layui-input">
+				</div>
+				<div class="layui-input-inline layui-btn-container" style="width: auto;">
+					<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+						<i class="layui-icon"></i>上传图片
+					</button>
+					<input class="layui-upload-file" type="file" accept="undefined" name="file">
+					<button class="layui-btn layui-btn-primary" layadmin-event="avartatPreview">查看图片</button>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">地质剖面图</label>
+				<div class="layui-input-inline">
+					<input name="avatar" lay-verify="required" id="LAY_avatarSrc" placeholder="图片地址" value="http://cdn.layui.com/avatar/168.jpg" class="layui-input">
+				</div>
+				<div class="layui-input-inline layui-btn-container" style="width: auto;">
+					<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+						<i class="layui-icon"></i>上传图片
+					</button>
+					<input class="layui-upload-file" type="file" accept="undefined" name="file">
+					<button class="layui-btn layui-btn-primary" layadmin-event="avartatPreview">查看图片</button>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+		window.onload=function show(){
+			var tbname=getParam('tbname');
+			switch (tbname) {
+			case "qxz":
+				document.getElementById("qxzEdit").style.display='block';
+				break;
+			case "qxzr":
+				document.getElementById("qxzrEdit").style.display='block';
+				break;
+			case "jbxx":
+				document.getElementById("jbxxEdit").style.display='block';
+				break;
+			default:
+				break;
+			}
+		}
+
+		layui.use(['form','layer','table'], function() {
+			var form = layui.form;
+			var layer = layui.layer;
+			var operate=getParam("type");
+			var tb=getParam('tbname');
+
+			//监听提交
+			form.on('submit(formDemo)', function(data) {
+				var url="/operate?operate="+operate+"&tbtype="+tb;
+				url=encodeURI(encodeURI(url));
+				$.ajax({
+					type : "POST",
+					url : url,
+					data:JSON.stringify(data.field),
+					contentType : 'application/json',
+					success : function(result) {
+                        layer.alert('操作成功！', {icon: 1}, function(index){
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index);
+                            //表格刷新
+                            if(tb=='qxz'){
+                                parent.layui.table.reload('reload1',{page:{curr:1}});
+                            }else{
+
+                            }
+                        });
+					}
+				});
+				//layui form表单，在ajax提交后，需要在后面添加return false
+				return false;
+			});
+		});
+
+		function getParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return unescape(r[2]); return null;
+		}
+	</script>
+</body>
+</html>

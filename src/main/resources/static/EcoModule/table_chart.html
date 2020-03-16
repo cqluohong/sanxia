@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>数据管理</title>
+<link href="/x-admin/lib/layui/css/layui.css" rel="stylesheet">
+<script type="text/javascript" src="/x-admin/js/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.js"></script>
+<script type="text/javascript" src="/x-admin/js/option.js"></script>
+<script type="text/javascript" src="/x-admin/js/walden.js"></script>
+</head>
+<body>
+	<div class="layui-tab layui-tab-brief">
+		<ul class="layui-tab-title">
+			<li class="layui-this">站点水位</li>
+			<li>气象降雨</li>
+			<li>监测位移</li>
+		</ul>
+		<div class="layui-tab-content">
+			<div class="layui-tab-item layui-show">
+				<table class="layui-hide" id="table1" lay-filter="table1"></table>
+				<div class="layui-row">
+					<div class="layui-col-md6">
+						<div class="grid-demo" style="height: 300px;">
+							<div class="layui-card" style="height: 100%">
+								<div class="layui-card-body" style="height: 100%">
+									<div id="chart_sw1" style="height: 100%;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-md6">
+						<div class="grid-demo" style="height: 300px;">
+							<div class="layui-card" style="height: 100%">
+								<div class="layui-card-body" style="height: 100%">
+									<div id="chart_sw2" style="height: 100%;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-tab-item">
+				<table class="layui-hide" id="table2" lay-filter="table2"></table>
+			</div>
+			<div class="layui-tab-item">
+				<table class="layui-hide" id="table3" lay-filter="table3"></table>
+			</div>
+		</div>
+	</div>
+	<script type="text/html" id="toolbar">
+			<div class="demoTable">
+				<div class="layui-inline">
+					<select name="zhandian" id="zhandian" lay-filter="zhandian">
+						<option value="巴东大量程水位">巴东大量程水位</option>
+						<option value="兴山浮子水位">兴山浮子水位</option>
+						<option value="凤凰山（常规）W2Q水位">凤凰山（常规）W2Q水位</option>
+					</select>
+
+				</div>
+				<div class="layui-inline">
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" id="sw_starttime" placeholder="请选择开始日期">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" id="sw_endtime" placeholder="请选择结束日期">
+					</div>
+				</div>
+				<button type="button" class="layui-btn" data-type="reload">搜索</button>
+			</div>
+	</script>
+
+	<script type="text/html" id="bar">
+  		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+
+	<script type="text/javascript" src="/x-admin/lib/layui/layui.js"></script>
+
+	<script type="text/javascript">
+
+		var option1 = {
+			title : {
+				text : '水位趋势'
+			},
+			legend : {
+				right : 0,
+				data : [ '水位整点值（米）', '平均值（米）', '最大值（米）', '最小值（米）' ]
+			},
+			tooltip : {
+				trigger : 'axis'
+			},
+			grid : {
+				left : '3%',
+				right : '4%',
+				bottom : '3%',
+				containLabel : true
+			},
+			xAxis : {
+				type : 'category',
+				boundaryGap : false,
+				data : ['2019/5/6','2019/5/7','2019/5/8','2019/5/9','2019/5/10','2019/5/11','2019/5/12']
+			},
+			yAxis : {
+				type : 'value',
+				scale:true
+			},
+			series : [ {
+				name : '水位整点值（米）',
+				type : 'line',
+				smooth : true,
+				data : [0,0,0,0,0,0,0]
+			}, {
+				name : '平均值（米）',
+				type : 'line',
+				smooth : true,
+				data : [0,0,0,0,0,0,0]
+			}, {
+				name : '最大值（米）',
+				type : 'line',
+				smooth : true,
+				data : [0,0,0,0,0,0,0]
+			}, {
+				name : '最小值（米）',
+				type : 'line',
+				smooth : true,
+				data : [0,0,0,0,0,0,0]
+			} ]
+		};
+
+		var option2 = {
+				title : {
+					text : '水位时间趋势'
+				},
+				legend : {
+					right : 0,
+					data : [ '最大值时间', '最小值时间']
+				},
+				tooltip : {
+					trigger : 'axis'
+				},
+				grid : {
+					left : '3%',
+					right : '4%',
+					bottom : '3%',
+					containLabel : true
+				},
+				xAxis : {
+					type : 'category',
+					boundaryGap : false,
+					data : ['2019/5/6','2019/5/7','2019/5/8','2019/5/9','2019/5/10','2019/5/11','2019/5/12']
+				},
+				yAxis : {
+					type : 'value',
+				},
+				series : [ {
+					name : '最大值时间',
+					type : 'line',
+					smooth : true,
+					data : [0,0,0,0,0,0,0]
+				}, {
+					name : '最小值时间',
+					type : 'line',
+					smooth : true,
+					data : [0,0,0,0,0,0,0]
+				}]
+			};
+
+		var chart_sw1 = echarts.init(document.getElementById('chart_sw1'), 'walden');
+		chart_sw1.setOption(option1);
+		var chart_sw2 = echarts.init(document.getElementById('chart_sw2'), 'walden');
+		chart_sw2.setOption(option2);
+
+
+		layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#sw_starttime',
+                format: 'yyyy/MM/d'
+              });
+            laydate.render({
+                elem: '#sw_endtime',
+                format: 'yyyy/MM/d'
+              });
+		});
+
+		layui.use('element', function() {
+			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		});
+		layui.use('table', function() {
+			var table = layui.table;
+			//执行一个 table 实例
+			table.render({
+				elem : '#table1',
+				height : 'full-400',
+				url : '/getShuiweiData', //数据接口
+				page : true,
+				toolbar : "#toolbar",
+				id:"reload1",
+				cols : [ [ {
+					field : 'xtsw01a010',
+					title : '站号',
+					sort : true,
+					fixed : 'left',
+				}, {
+					field : 'xtsw01a020',
+					sort : true,
+					title : '时间',
+					fixed : 'left'
+				}, {
+					field : 'xtsw01a030',
+					title : '水位整点值（米）',
+					sort : true
+				}, {
+					field : 'xtsw01a040',
+					title : '平均值（米）',
+					sort : true
+				}, {
+					field : 'xtsw01a050',
+					title : '最大值（米）',
+					sort : true
+				}, {
+					field : 'xtsw01a060',
+					title : '最大值时间',
+					sort : true
+				}, {
+					field : 'xtsw01a070',
+					title : '最小值（米）',
+					sort : true
+				}, {
+					field : 'xtsw01a080',
+					title : '最小值时间',
+					sort : true
+				} ] ]
+			});
+			var $ = layui.$, active = {
+				reload : function() {
+					var zhandian=$('#zhandian').val();
+					var starttime=$('#sw_starttime').val();
+					var endtime=$('#sw_endtime').val();
+
+					//执行重载
+					$.get('/getshuiweiEchart?zhandian='+zhandian+"&starttime="+starttime+"&endtime="+endtime).done(function(data) {
+						chart_sw1.setOption({
+							xAxis : {
+								data : data.xData
+							},
+							series : [ {
+								name : '水位整点值（米）',
+								data : data.seriesDataSWZDZ
+							}, {
+								name : '平均值（米）',
+								data : data.seriesDataPJZ
+							}, {
+								name : '最大值（米）',
+								data : data.seriesDataZDZ
+							}, {
+								name : '最小值（米）',
+								data : data.seriesDataZXZ
+							} ]
+						});
+						chart_sw2.setOption({
+							xAxis : {
+								data : data.xData
+							},
+							series : [ {
+								name : '最大值时间',
+								data : data.seriesDataZDZSJ
+							}, {
+								name : '最小值时间',
+								data : data.seriesDataZXZSJ
+							} ]
+						});
+					});
+					table.reload('reload1', {
+						url : "/getShuiweiBytime",
+						page : {
+							curr : 1
+						},
+						where : {
+							zhandian : zhandian,
+							starttime : starttime,
+							endtime : endtime
+						},
+						toolbar : "#toolbar"
+					});
+				}
+			};
+			$('.demoTable .layui-btn').on('click', function() {
+				var type = $(this).data('type');
+			    console.log(type);
+				active[type] ? active[type].call(this) : '';
+			});
+		});
+	</script>
+</body>
+</html>

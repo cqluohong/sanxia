@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+<link href="/x-admin/lib/layui/css/layui.css" rel="stylesheet">
+<script type="text/javascript" src="/x-admin/lib/layui/layui.js"></script>
+<script type="text/javascript" src="/x-admin/js/jquery.min.js"></script>
+</head>
+<body>
+	<div id="qxzEdit" name="qxzEdit" style="padding: 10px 10px 10px;" >
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">站号</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a010" id="qxaa01a010" required lay-verify="required"
+						class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">站点类型</label>
+					<div class="layui-input-inline">
+						<select name="qxaa01a080" id="qxaa01a080" lay-verify="required">
+							<option value="国家站">国家站</option>
+							<option value="区域站">区域站</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">乡镇</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a020" id="qxaa01a020" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">省</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a030" id="qxaa01a030" required lay-verify="required" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">经度</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a040" id="qxaa01a040" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">纬度</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a050" id="qxaa01a050" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">高程</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a060" id="qxaa01a060" class="layui-input" lay-verify="number">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">位置</label>
+					<div class="layui-input-inline">
+						<input type="text" name="qxaa01a070" id="qxaa01a070" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+	layui.use(['form','layer','table'], function() {
+			var form = layui.form;
+			var layer = layui.layer;
+			//监听提交
+			form.on('submit(formDemo)', function(data) {
+				var url="/qxzAdd";
+				$.ajax({
+					type : "POST",
+					url : url,
+					data:JSON.stringify(data.field),
+					contentType : 'application/json',
+					success : function(result) {
+                        layer.alert('操作成功！', {icon: 1}, function(index){
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index);
+                            //表格刷新
+                            parent.layui.table.reload('reload1',{page:{curr:1}});
+                        });
+					}
+				});
+				//layui form表单，在ajax提交后，需要在后面添加return false
+				return false;
+			});
+		});
+	</script>
+</body>
+</html>

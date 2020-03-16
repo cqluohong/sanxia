@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>数据管理</title>
+    <link href="/x-admin/lib/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<div class="layui-tab layui-tab-brief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">自动气象站信息表</li>
+        <li>自动气象站信息日数据表</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">
+            <table class="layui-hide" id="table1" lay-filter="table1"></table>
+        </div>
+        <div class="layui-tab-item">
+            <table class="layui-hide" id="table2" lay-filter="table2"></table>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="toolbar1">
+    <div class="demoTable">
+        搜索站号：
+        <div class="layui-inline">
+            <input class="layui-input" id="searchReload1" autocomplete="off">
+        </div>
+        <button class="layui-btn" lay-event="search">搜索</button>
+        <button class="layui-btn" lay-event="add">添加</button>
+    </div>
+</script>
+
+<script type="text/html" id="toolbar2">
+    <div class="demoTable">
+        搜索站号：
+        <div class="layui-inline">
+            <input class="layui-input" autocomplete="off">
+        </div>
+        <button class="layui-btn" lay-event="search">搜索</button>
+        <button class="layui-btn" lay-event="add">添加</button>
+    </div>
+</script>
+
+<script type="text/html" id="bar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script type="text/javascript" src="/x-admin/lib/layui/layui.js"></script>
+
+<script type="text/javascript">
+    layui.use(['form','table','element'], function() {
+        var $ = layui.jquery, element = layui.element;
+        var table = layui.table;
+        var form = layui.form;
+        //执行一个 table 实例
+        table.render({
+            elem : '#table1',
+            limit: 10,
+            height : 'full-100',
+            url : '/getQxzData', //数据接口
+            page : true,
+            toolbar : "#toolbar1" ,
+            cols : [ [{field : 'qxaa01a010',title : '站号',sort : true,fixed : 'left'}, {field : 'qxaa01a020',title : '乡镇',sort : true},
+                {field : 'qxaa01a030',title : '省',sort : true},{field : 'qxaa01a040',title : '经度'},
+                {field : 'qxaa01a050',title : '纬度'}, {field : 'qxaa01a060',title : '高程'},
+                {field : 'qxaa01a070',title : '位置'}, {field : 'qxaa01a080',title : '站点类型',sort : true},
+                {fixed : 'right',title : "操作",width : 120,align : 'center',toolbar : '#bar'}
+            ] ],
+            id : "reload1"
+
+        });
+        table.render({
+            elem : '#table2',
+            height : 'full-100',
+            url : '/getQxzrData', //数据接口
+            page : true,
+            toolbar : "#toolbar2" ,
+            cols : [ [{field : 'qxaa05a010',title : '站号',sort : true,fixed : 'left'}, {field : 'qxaa05a020',title : '日期',sort : true},
+                {field : 'qxaa05a030',title : '日小型蒸发量',sort : true},{field : 'qxaa05a040',title : '日大型蒸发量',sort : true},
+                {field : 'qxaa05a050',title : '日降水量',sort : true}, {field : 'qxaa05a060',title : '日平均气温',sort : true},
+                {field : 'qxaa05a070',title : '日最高气温',sort : true}, {field : 'qxaa05a080',title : '日最低气温',sort : true},
+                {field : 'qxaa05a090',title : '日最大风速',sort : true}, {field : 'qxaa05a100',title : '小时最大降雨量',sort : true},
+                {fixed : 'right',title : "操作",width : 120,align : 'center',toolbar : '#bar'}
+            ] ],
+            id : "reload2"
+        });
+
+
+        //监听行工具事件
+        table.on('tool(table1)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值
+
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            editUrl="/EcoModule/qxzUpdate.html";
+            deleteUrl="/qxzDelete";
+            if (layEvent === 'del') {
+                layer.confirm('确定删除吗？', function(index) {
+                    url=encodeURI(encodeURI(deleteUrl));
+                    //向服务端发送删除指令
+                    $.ajax({
+                        type : "POST",
+                        url : url,
+                        data:JSON.stringify(data),
+                        contentType : 'application/json',
+                        success : function(result) {
+                                layer.alert('操作成功！', {icon: 1});
+                            }
+                    });
+                    obj.del(); //删除对应行（tr）的DOM结构
+                    layer.close(index);
+                    //layui form表单，在ajax提交后，需要在后面添加return false
+                    return false;
+                });
+            } else if (layEvent === 'edit') {
+                layer.open({
+                    title:'编辑',
+                    type:2,
+                    offset: '80px',
+                    maxmin: true,
+                    skin:'layui-layer-molv',
+                    area: ['50%', '50%'],
+                    content:encodeURI(encodeURI(editUrl)),
+                    success:function(layero,index){
+                        var div = layero.find('iframe').contents().find('#qxzEdit');
+                        var iframeWin = layero.find('iframe')[0].contentWindow;
+                        for(var k in data){
+                            div.find("#"+k).val(data[k]);
+                        }
+                        iframeWin.layui.form.render('select');
+                    }
+                });
+                //同步更新缓存对应的值
+                obj.update({
+                    username : '123',
+                    title : 'xxx'
+                });
+            }
+        });
+
+        //监听行工具事件
+        table.on('tool(table2)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            var strData=JSON.stringify(data);
+            editUrl="/EcoModule/qxzrUpdate.html";
+            if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function(index) {
+                    obj.del(); //删除对应行（tr）的DOM结构
+                    layer.close(index);
+                    //向服务端发送删除指令
+                });
+            } else if (layEvent === 'edit') {
+                layer.open({
+                    title:'编辑',
+                    type:2,
+                    offset: '80px',
+                    maxmin: true,
+                    skin:'layui-layer-molv',
+                    area: ['53%', '63%'],
+                    content:encodeURI(encodeURI(editUrl)),
+                    success:function(layero,index){
+                        var div = layero.find('iframe').contents().find('#qxzrEdit');
+                        var iframeWin = layero.find('iframe')[0].contentWindow;
+                        for(var k in data){
+                            div.find("#"+k).val(data[k]);
+                        }
+                        iframeWin.layui.form.render('select');
+                    }
+                });
+                //同步更新缓存对应的值
+                obj.update({
+                    username : '123',
+                    title : 'xxx'
+                });
+            }
+        });
+        table.on('toolbar(table1)',function(obj){
+                switch(obj.event){
+                    case 'search':
+                        table.reload('reload1', {
+                            url:"/qxzSearch",
+                            page : {
+                                curr : 1
+                            },
+                            where : {
+                                searchstr : $('#searchReload1').val()
+                            }
+                        });
+                        break;
+                    case 'add':
+                        addUrl="/EcoModule/qxzAdd.html";
+                        layer.open({
+                            title:'添加',
+                            type:2,
+                            offset: '80px',
+                            maxmin: true,
+                            skin:'layui-layer-molv',
+                            area: ['50%', '50%'],
+                            content:encodeURI(encodeURI(addUrl)),
+                        });
+                        break;
+                }
+            });
+    });
+</script>
+</body>
+</html>
